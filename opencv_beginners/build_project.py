@@ -11,7 +11,7 @@ except IndexError, e:
 	print "Usage: python build_project.py debug|release|clean" 
 	sys.exit(1)
 	
-os.chdir("basicImgOps")
+os.chdir("source/basicImgOps")
 
 if option == "debug":
 	os.system("make -j `nproc`")
@@ -21,5 +21,3 @@ elif option == "clean":
 	os.system("make -j `nproc` clean_all")
 else:
 	print "Usage: python build_project.py debug|release|clean" 
-
-os.chdir("../")
