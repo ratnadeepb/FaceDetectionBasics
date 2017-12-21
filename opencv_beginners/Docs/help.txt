@@ -1,0 +1,8 @@
+In order to build all utilities:
+	make all
+
+If you are looking to create a utility that reads and writes images:
+	make readWrite
+
+If, instead you want resize and cropping functions:
+	make cropResize
