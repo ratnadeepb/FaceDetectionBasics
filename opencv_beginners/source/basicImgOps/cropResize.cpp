@@ -24,7 +24,7 @@ int cropResize(char* src)
 	**	source(row_range, column_range)
 	*/
 
-	Mat crop = source(cv::Range(50, 150), cv::Range(50, 150));
+	Mat crop = source(cv::Range(0, 50), cv::Range(175, 230));		// (y-range, x-range)
 
 	// Create Display windows for all three images
 	namedWindow("Original", WINDOW_AUTOSIZE);
@@ -37,6 +37,9 @@ int cropResize(char* src)
 	imshow("Scaled Down", scaleDown);
 	imshow("Scaled Up", scaleUp);
 	imshow("Cropped Image", crop);
+
+	// Wait
+	waitKey(0);
 
 	return EXIT_SUCCESS;
 }

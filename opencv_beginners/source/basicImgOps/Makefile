@@ -9,15 +9,34 @@ CFLAGS = -g -Wall -Wextra
 HEADERS= `pkg-config --libs --cflags opencv`
 TESTDIR = ../../test/basicImgOpsTests/
 DOCDIR = ../../Docs/
+DEBUGDIR = ../../build/Debug/basicImgOpsBuild/
+RELEASEDIR = ../../build/Release/basicImgOpsBuild/
 
-readWrite:
-	@$(CC) --std=$(STD) $(CFLAGS) $(TESTDIR)testRW.cpp readWriteDisplay.cpp readWriteDisplay.hpp $(HEADERS) -o readWrite
+# DEBUG BUILD
 
-cropResize:
-	@$(CC) --std=$(STD) $(CFLAGS) $(TESTDIR)testCR.cpp cropResize.hpp cropResize.cpp $(HEADERS) -o cropResize
+DreadWrite:
+	@$(CC) --std=$(STD) $(CFLAGS) $(TESTDIR)testRW.cpp readWriteDisplay.cpp readWriteDisplay.hpp $(HEADERS) -o $(DEBUGDIR)readWrite
 
-all: readWrite cropResize
+DcropResize:
+	@$(CC) --std=$(STD) $(CFLAGS) $(TESTDIR)testCR.cpp cropResize.hpp cropResize.cpp $(HEADERS) -o $(DEBUGDIR)cropResize
 
+Drotate:
+	@$(CC) --std=$(STD) $(CFLAGS) $(TESTDIR)testRot.cpp rotation.hpp rotation.cpp $(HEADERS) -o $(DEBUGDIR)rotate
+
+debug: DreadWrite DcropResize Drotate
+
+# RELEASE BUILD
+
+RreadWrite:
+	@$(CC) --std=$(STD) $(TESTDIR)testRW.cpp readWriteDisplay.cpp readWriteDisplay.hpp $(HEADERS) -o $(RELEASEDIR)readWrite
+
+RcropResize:
+	@$(CC) --std=$(STD) $(TESTDIR)testCR.cpp cropResize.hpp cropResize.cpp $(HEADERS) -o $(RELEASEDIR)cropResize
+
+Rrotate:
+	@$(CC) --std=$(STD) $(TESTDIR)testRot.cpp rotation.hpp rotation.cpp $(HEADERS) -o $(RELEASEDIR)rotate
+
+release: RreadWrite RcropResize Rrotate
 clean:
 	@python cleanup.py
 

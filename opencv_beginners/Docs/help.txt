@@ -1,8 +1,21 @@
-In order to build all utilities:
-	make all
+In order to build in debug mode:
+	make debug
+
+In order to build in release mode:
+	make release
+
+It is possible to build the tests for each target:
+	In release mode the targets start with "R"
+	In debug mode the targets start with "D"
 
 If you are looking to create a utility that reads and writes images:
-	make readWrite
+	make DreadWrite - debug
+	make RreadWrite - release
 
 If, instead you want resize and cropping functions:
-	make cropResize
+	make DcropResize - debug
+	make RcropResize - release
+
+To check the rotate function:
+	make Drotate - debug
+	make Rrotate - release

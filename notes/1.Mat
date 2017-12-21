@@ -1,0 +1,107 @@
+Introduction to the Mat class
+
+1. Serves as a basic image container
+2. And as a matrix
+
+### Mat as an image container
+
+	Mat image contains:
+		1. Header - size, medium of storage, address etc
+		2. Data - pointer to the address in memory that stores the actual pixels
+
+	# Reading an image
+		// Read image in BGR format
+		Mat A = imread("image.jpg", IMREAD_COLOR);
+		// Read image in grayscale
+		Mat A = imread("image.jpg", IMREAD_GRAYSCALE);
+
+	# Assignment is not copy
+		// Pointer of B points to the same data matrix as A
+		Mat B(A);
+		// C is assigned the same data matrix as A but a different header
+		Mat C = A;
+
+	# Copy part of an image
+		// Copy a Rectangle of width 50 and height 50 from point (15,15)
+		Mat B(A, Rect(15, 15, 50, 50));
+		/* Specific rows and columns can also be selected using 
+		the Range function */
+		// Copies from rows 2 to 4 and columns 4 to 6
+		Mat B = A(Range(2, 4), Range(4,6));
+
+	# Clone an image
+		// The clone method is used to copy data and header. 
+		B = A.clone();
+
+	# Clone with a mask
+		// The copyTo method allows you to clone with a binary mask.
+		A.copyTo(B,mask);
+
+	# Find size
+		// Find rows and columns of a Mat object
+		Mat M;
+		// To find the number of rows
+		M.rows;
+		// To find the number of columns
+		M.cols;
+		// To find the number of channels
+		M.channels()
+
+		// Find height and width using Size
+		Mat M;
+		Size sz = M.size();
+		// number of rows
+		sz.height;
+		// number of columns
+		sz.width;
+
+		Note: The number of columns equals width and the number of rows equals the height. So when specifying Size using height and width, we 			have to use Size(width, height).
+
+### Mat as a Matrix
+
+	Serves as a default matrix class with an associated data type in the form CV_<bit-depth>{U|S|F}C<number_of_channels>
+	Ex. CV_8UC3 - Matrix with 3 channels of 8 unsigned bits per channel
+
+	# Create Mat object
+		# Using constructor
+			Mat M(no. of rows, no. of cols, no. of channels, color)
+			// Create a 3x3 Matrix using the constructor
+			Mat M(3,3,CV_8UC3, Scalar(0,255,180));
+
+
+		# Using C/C++ arrays
+			// Create Mat using C/C++ arrays
+			// First define the size of the matrix
+			int size[]={4,4};
+
+			// Create a 2-dimensional matrix with the above size filled with 20.
+			Mat L(2, size, CV_8U, Scalar::all(20));
+
+
+		# Using create method
+			M.create( rows, cols, number of channels)
+			// Create a matrix using the create method
+			M.create(4, 4, CV_8UC(2));
+
+			This method will create a Mat matrix with all 0s. Values cannot be chosen.
+
+
+	# Ones, zeros and identity matrix
+		# Ones
+			Mat A = Mat::ones(no. of rows, no. cols, datatype and no. of channels)
+			// Create a matrix with all elements initialized to 1
+			Mat M1 = Mat::ones(3, 3, CV_64F); 
+
+
+		# Zeros
+			// Create a matrix with all elements initialized to 0
+			Mat M2 = Mat::zeros(3, 3, CV_64F);
+
+		# Identity
+			// Create 3x3 identity matrix
+			Mat M3 = Mat::eye(3, 3, CV_64F);
+
+
+	# Initialise small matrices
+		// Small matrix initialization
+		Mat C = (Mat_<double>(3,3) << 0, -1, 0, -1, 5, 6, 0, -3, 3);
