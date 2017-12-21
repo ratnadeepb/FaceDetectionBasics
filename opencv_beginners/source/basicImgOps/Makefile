@@ -2,19 +2,21 @@
 
 CC = g++
 
-.PHONY: install clean readWrite cropResize all
+.PHONY: Dreadwrite DcropResize Drotate DimageDraw debug RreadWrite RcropResize Rrotate RimageDraw release clean_all clean_debug clean_release help
 
 STD = c++11
 CFLAGS = -g -Wall -Wextra
 HEADERS= `pkg-config --libs --cflags opencv`
 TESTDIR = ../../test/basicImgOpsTests/
 DOCDIR = ../../Docs/
-DEBUGDIR = ../../build/Debug/basicImgOpsBuild/
-RELEASEDIR = ../../build/Release/basicImgOpsBuild/
+DEBUGDIR = ../../build/Debug/basicImgOps/
+RELEASEDIR = ../../build/Release/basicImgOps/
 
 # DEBUG BUILD
 
-DreadWrite:
+debug: DreadWrite DcropResize Drotate DimageDraw
+
+DreadWrite: $(TESTDIR)testRW.cpp readWriteDisplay.cpp readWriteDisplay.hpp
 	@$(CC) --std=$(STD) $(CFLAGS) $(TESTDIR)testRW.cpp readWriteDisplay.cpp readWriteDisplay.hpp $(HEADERS) -o $(DEBUGDIR)readWrite
 
 DcropResize:
@@ -23,7 +25,10 @@ DcropResize:
 Drotate:
 	@$(CC) --std=$(STD) $(CFLAGS) $(TESTDIR)testRot.cpp rotation.hpp rotation.cpp $(HEADERS) -o $(DEBUGDIR)rotate
 
-debug: DreadWrite DcropResize Drotate
+DimageDraw:
+	@$(CC) --std=$(STD) $(CFLAGS) $(TESTDIR)testDraw.cpp imageDraw.hpp imageDraw.cpp $(HEADERS) -o $(DEBUGDIR)imageDraw
+
+#debug: DreadWrite DcropResize Drotate DimageDraw
 
 # RELEASE BUILD
 
@@ -36,9 +41,19 @@ RcropResize:
 Rrotate:
 	@$(CC) --std=$(STD) $(TESTDIR)testRot.cpp rotation.hpp rotation.cpp $(HEADERS) -o $(RELEASEDIR)rotate
 
-release: RreadWrite RcropResize Rrotate
-clean:
-	@python cleanup.py
+RimageDraw:
+	@$(CC) --std=$(STD) $(TESTDIR)testDraw.cpp imageDraw.hpp imageDraw.cpp $(HEADERS) -o $(RELEASEDIR)imageDraw
+
+release: RreadWrite RcropResize Rrotate RimageDraw
+
+clean_all:
+	@python ../cleanup_scripts/basicImgOpsClean/cleanall.py
+
+clean_debug:
+	@python ../cleanup_scripts/basicImgOpsClean/clean_debug.py
+
+clean_release:
+	@python ../cleanup_scripts/basicImgOpsClean/clean_release.py
 
 help:
 	@less $(DOCDIR)help.txt

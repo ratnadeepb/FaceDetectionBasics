@@ -1,3 +1,5 @@
+The default build is debug.
+
 In order to build in debug mode:
 	make debug
 
