@@ -1,0 +1,1 @@
+sudo apt-get install ffmpeg x264 libx264-dev

@@ -2,7 +2,7 @@
 
 CC = g++
 
-.PHONY: Dreadwrite DcropResize Drotate DimageDraw debug RreadWrite RcropResize Rrotate RimageDraw release clean_all clean_debug clean_release help
+.PHONY: DhighguiMouse Dreadwrite DcropResize Drotate DimageDraw debug RreadWrite RcropResize Rrotate RimageDraw RhighguiMouse release clean_all clean_debug clean_release help
 
 STD = c++11
 CFLAGS = -g -Wall -Wextra
@@ -15,7 +15,7 @@ CLEANDIR = ../cleanup_scripts/basicImgOpsClean/
 
 # DEBUG BUILD
 
-debug: DreadWrite DcropResize Drotate DimageDraw
+debug: DreadWrite DcropResize Drotate DimageDraw DhighguiMouse
 
 DreadWrite: $(TESTDIR)testRW.cpp readWriteDisplay.cpp readWriteDisplay.hpp
 	@$(CC) --std=$(STD) $(CFLAGS) $(TESTDIR)testRW.cpp readWriteDisplay.cpp readWriteDisplay.hpp $(HEADERS) -o $(DEBUGDIR)readWrite
@@ -29,12 +29,12 @@ Drotate: $(TESTDIR)testRot.cpp rotation.hpp rotation.cpp
 DimageDraw: $(TESTDIR)testDraw.cpp imageDraw.hpp imageDraw.cpp
 	@$(CC) --std=$(STD) $(CFLAGS) $(TESTDIR)testDraw.cpp imageDraw.hpp imageDraw.cpp $(HEADERS) -o $(DEBUGDIR)imageDraw
 
-DhighguiMouse:
-	@$(CC) --std=$(STD) $(CFLAGS) $(TESTDIR)testHighguiMouse.cpp highguiMouse.hpp highguiMouse.cpp $(HEADERS) -o $(DEBUGDIR) highguiMouse
+DhighguiMouse: $(TESTDIR)testHighguiMouse.cpp highguiMouse.hpp highguiMouse.cpp
+	@$(CC) --std=$(STD) $(CFLAGS) $(TESTDIR)testHighguiMouse.cpp highguiMouse.hpp highguiMouse.cpp $(HEADERS) -o $(DEBUGDIR)highguiMouse
 
 # RELEASE BUILD
 
-release: RreadWrite RcropResize Rrotate RimageDraw
+release: RreadWrite RcropResize Rrotate RimageDraw RhighguiMouse
 
 RreadWrite: $(TESTDIR)testRW.cpp readWriteDisplay.cpp readWriteDisplay.hpp
 	@$(CC) --std=$(STD) $(TESTDIR)testRW.cpp readWriteDisplay.cpp readWriteDisplay.hpp $(HEADERS) -o $(RELEASEDIR)readWrite
@@ -48,7 +48,7 @@ Rrotate: $(TESTDIR)testRot.cpp rotation.hpp rotation.cpp
 RimageDraw: $(TESTDIR)testDraw.cpp imageDraw.hpp imageDraw.cpp
 	@$(CC) --std=$(STD) $(TESTDIR)testDraw.cpp imageDraw.hpp imageDraw.cpp $(HEADERS) -o $(RELEASEDIR)imageDraw
 
-RhighguiMouse:
+RhighguiMouse: $(TESTDIR)testHighguiMouse.cpp highguiMouse.hpp highguiMouse.cpp
 	@$(CC) --std=$(STD) $(TESTDIR)testHighguiMouse.cpp highguiMouse.hpp highguiMouse.cpp $(HEADERS) -o $(RELEASEDIR)highguiMouse
 
 # Build both Debug and Release
@@ -64,4 +64,4 @@ clean_release:
 	@python $(CLEANDIR)clean_release.py
 
 help:
-	@less $(DOCDIR)help.txt
+	@less $(DOCDIR)make_help.txt
