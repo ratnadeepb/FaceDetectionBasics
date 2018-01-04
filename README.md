@@ -6,9 +6,8 @@ Maybe it will benefit you in some way!
 I have attempted to build this as I would build a proper C++ project. 
 And would appreciate if you can figure out ways to improve the project build.
 
-Also, I am building these projects quick and dirty, so I am building against:
+I started building these projects quick and dirty, so was building against:
 1. "opencv2/opencv.hpp"
 2. `pkg-config --libs --cflags opencv`
 
-This means that my builds will be relatively bulky and time consuming.
-I might rectify this situation in a future project as I get more comfortable with reading opencv documentation, the make build system and figure out a way to automate the library selection for building the individual targets.
+This means that my builds were relatively bulky and time consuming. I have started porting things over to the cmake but it's an ongoing process right now.
