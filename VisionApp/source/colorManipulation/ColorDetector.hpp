@@ -51,12 +51,12 @@ public:
     // Calculate city-block distance between colors
     int getColorDistance(const cv::Vec3b& color1, const cv::Vec3b& color2) const
     {
-        return abs(color1[0] - color2[0]) + 
+        /*return abs(color1[0] - color2[0]) + 
                 abs(color1[1] - color2[1]) + 
-                abs(color1[2] - color2[2]);
+                abs(color1[2] - color2[2]);*/
         
-        // Or:
-	// return static_cast<int>(cv::norm<int,3>(cv::Vec3i(color[0]-color2[0],color[1]-color2[1],color[2]-color2[2])));
+	return static_cast<int>(cv::norm<int,3>(cv::Vec3i(color1[0]-color2[0],
+                color1[1]-color2[1],color1[2]-color2[2])));
 		  
 	// Or:
 	// cv::Vec3b dist;
