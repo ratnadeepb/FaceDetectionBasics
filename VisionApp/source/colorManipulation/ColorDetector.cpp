@@ -21,8 +21,8 @@ cv::Mat ColorDetector::process(const cv::Mat& image)
 {
     // re-allocate binary map if neccessary
     // same size as input image but 1 channel
-    result.create(image.size(), CV_8U);
-    
+    result.create(image.size(), CV_8U);                                         // This step is executed only if the 
+                                                                                // sizes don't match
     // Converting to lab color space
     if(useLab){
         cv::cvtColor(image, converted, CV_BGR2Lab);
@@ -43,22 +43,11 @@ cv::Mat ColorDetector::process(const cv::Mat& image)
     for(; it != itend; ++it, ++itout){
         // process each pixel
         // Compute distance from target color
-        if(getDistanceToTargetColor(*it) < maxDist){
-            *itout = 255;
+        if(getDistanceToTargetColor(*it) < maxDist){                            // If distance is within tolerance
+            *itout = 255;                                                       // then assign white to the pixel
         } else {
-            *itout = 0;
+            *itout = 0;                                                         // else assign black
         }
     }
     return result;
 }
-
-
-
-
-
-
-
-
-
-
-

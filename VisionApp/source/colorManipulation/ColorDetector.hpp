@@ -24,7 +24,7 @@ class ColorDetector {
 private:
     int maxDist;                                                                // Minumum acceptable distance
     cv::Vec3b target;                                                           // Target color
-    cv::Mat converted;                                                          // Converted image
+    cv::    Mat converted;                                                          // Converted image
     bool useLab;
     
     cv::Mat result;                                                             // Binary map of image
@@ -138,6 +138,16 @@ public:
     cv::Vec3b getTargetColor() const
     {
         return target;
+    }
+    
+    void setUseLab(int useLab){
+        if(useLab){
+            this->useLab = true;
+        }
+    }
+    
+    void setUseLab(bool useLab){
+        this->useLab = useLab;
     }
 
 };

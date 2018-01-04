@@ -51,8 +51,8 @@ int reduceColorEfficient(cv::Mat* img, int n)
 	int retVal = EXIT_FAILURE;
 
 	if(n > 7){
-		std::cerr << "This program supports reduction by power \
-of 2 only" << std::endl;
+		std::cerr << "This program supports reduction by power of 2 \
+only" << std::endl;
 		return retVal;
 	}
 
