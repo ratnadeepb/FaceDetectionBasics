@@ -1,0 +1,65 @@
+Scanning dependencies of target basicOps
+[  3%] Building CXX object ImgOps/CMakeFiles/basicOps.dir/basicOps.cpp.o
+[  7%] Building CXX object ImgOps/CMakeFiles/basicOps.dir/runImgs.cpp.o
+[ 10%] Linking CXX executable basicOps
+[ 10%] Built target basicOps
+Scanning dependencies of target findImgChannels
+[ 14%] Building CXX object ImgOps/CMakeFiles/findImgChannels.dir/findImgChannels.cpp.o
+[ 17%] Linking CXX executable findImgChannels
+[ 17%] Built target findImgChannels
+Scanning dependencies of target flipImg
+[ 21%] Building CXX object ImgOps/CMakeFiles/flipImg.dir/flipImg.cpp.o
+[ 25%] Building CXX object ImgOps/CMakeFiles/flipImg.dir/basicOps.cpp.o
+[ 28%] Linking CXX executable flipImg
+[ 28%] Built target flipImg
+Scanning dependencies of target convertToGray
+[ 32%] Building CXX object ImgOps/CMakeFiles/convertToGray.dir/convertToGray.cpp.o
+[ 35%] Linking CXX executable convertToGray
+[ 35%] Built target convertToGray
+Scanning dependencies of target splitProcess
+[ 39%] Building CXX object pixelManipulation/CMakeFiles/splitProcess.dir/splitProcess.cpp.o
+[ 42%] Linking CXX executable splitProcess
+[ 42%] Built target splitProcess
+Scanning dependencies of target sharpenEdges
+[ 46%] Building CXX object pixelManipulation/CMakeFiles/sharpenEdges.dir/sharpenEdges.cpp.o
+[ 50%] Linking CXX executable sharpenEdges
+[ 50%] Built target sharpenEdges
+Scanning dependencies of target reduceColor
+[ 53%] Building CXX object pixelManipulation/CMakeFiles/reduceColor.dir/reduceColor.cpp.o
+[ 57%] Linking CXX executable reduceColor
+[ 57%] Built target reduceColor
+Scanning dependencies of target saltPepper
+[ 60%] Building CXX object pixelManipulation/CMakeFiles/saltPepper.dir/saltPepper.cpp.o
+[ 64%] Linking CXX executable saltPepper
+[ 64%] Built target saltPepper
+Scanning dependencies of target reduceColorEfficient
+[ 67%] Building CXX object pixelManipulation/CMakeFiles/reduceColorEfficient.dir/reduceColorEfficient.cpp.o
+[ 71%] Linking CXX executable reduceColorEfficient
+[ 71%] Built target reduceColorEfficient
+Scanning dependencies of target addImgs
+[ 75%] Building CXX object pixelManipulation/CMakeFiles/addImgs.dir/addImgs.cpp.o
+[ 78%] Linking CXX executable addImgs
+[ 78%] Built target addImgs
+Scanning dependencies of target reduceColorIterator
+[ 82%] Building CXX object pixelManipulation/CMakeFiles/reduceColorIterator.dir/reduceColorIterator.cpp.o
+[ 85%] Linking CXX executable reduceColorIterator
+[ 85%] Built target reduceColorIterator
+Scanning dependencies of target reduceColorMatrix
+[ 89%] Building CXX object pixelManipulation/CMakeFiles/reduceColorMatrix.dir/reduceColorMatrix.cpp.o
+[ 92%] Linking CXX executable reduceColorMatrix
+[ 92%] Built target reduceColorMatrix
+Scanning dependencies of target detectColor
+[ 96%] Building CXX object colorManipulation/CMakeFiles/detectColor.dir/detectColor.cpp.o
+/home/ratnadeepb/app/MyPrograms/cv/cpp/threeVision/source/colorManipulation/detectColor.cpp: In function ‘int main(int, char**)’:
+/home/ratnadeepb/app/MyPrograms/cv/cpp/threeVision/source/colorManipulation/detectColor.cpp:8:2: error: ‘ColorDetector’ is not a member of ‘cv’
+  cv::ColorDetector cdetect;
+  ^
+/home/ratnadeepb/app/MyPrograms/cv/cpp/threeVision/source/colorManipulation/detectColor.cpp:13:2: error: ‘cdetect’ was not declared in this scope
+  cdetect.setTargetColor(230,190,130);
+  ^
+colorManipulation/CMakeFiles/detectColor.dir/build.make:62: recipe for target 'colorManipulation/CMakeFiles/detectColor.dir/detectColor.cpp.o' failed
+make[2]: *** [colorManipulation/CMakeFiles/detectColor.dir/detectColor.cpp.o] Error 1
+CMakeFiles/Makefile2:585: recipe for target 'colorManipulation/CMakeFiles/detectColor.dir/all' failed
+make[1]: *** [colorManipulation/CMakeFiles/detectColor.dir/all] Error 2
+Makefile:83: recipe for target 'all' failed
+make: *** [all] Error 2
